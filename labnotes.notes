@@ -1,0 +1,655 @@
+-----------------------------------------------------------------------------------------------
+Usefull commands: 
+------------------------------------------------------------------------------------------------
+grep "^[^#;]" undercloud.conf
+
+sudo journalctl -u os-collect-config
+
+openstack baremetal node maintenance unset <NODE UUID>
+
+watch 'openstack baremetal node list || true && openstack server list'
+
+------------------------------------------------------------------------------------------------
+Issues tracker: 
+------------------------------------------------------------------------------------------------
+https://access.redhat.com/solutions/3299211
+
+
+================================================================================================
+Lab Cabeling:
+================================================================================================
+
+------------------------------------------------------------------------------------------------
+Connectivity:
+------------------------------------------------------------------------------------------------
+M1000 mgmt port is connected to TOR port 3.
+
+Spine1 Mgmt port connected to TOR port 45.
+Spine2 Mgmt port connected to TOR port 46.
+
+spine1 :  port 124 --> spine2: port124  (VLTi/ICL link)
+
+MXL A1 : port 37  --> spine2: port 8
+MXL A1 : port 33  --> spine1: port 8
+
+MXL A2 : port 37  --> spine2: port 12
+MXL A2 : port 33  --> spine1: port 12
+
+MXL B1 : port 53  --> spine 1: port 4
+MXL B1 :  port 37  --> spine 2: port 4
+
+MXL B2 : port 53  --> spine1: port 0
+MXL B2 :  port 37  --> spine 2: port 0
+
+
+------------------------------------------------------------------------------------------------
+Switch Console connectivity:
+------------------------------------------------------------------------------------------------
+Access via web browser......
+
+ZPE console Server =172.16.0.250
+Username = ******
+Password = ******
+
+Spine 1 = port 13 on the ZPE switch
+Spine 2 = port 14 on the ZPE switch
+
+------------------------------------------------------------------------------------------------
+Santaclara Lab Mgmt IP's:
+------------------------------------------------------------------------------------------------
+Network:  172.17.72.0/24
+Gateway:  172.17.72.254
+DNS:      use Google’s DNS (8.8.8.8 and 8.8.4.4)
+
+Chassis 1  CMC = 172.17.72.1
+Username = *********
+Password = *********
+
+iDrac: 172.17.72.3  - 172.17.72.18 (blade one starts with .3) 
+UserName: ****
+Password: ****
+
+MXL A1: 172.17.72.35 
+MXL B1: 172.17.72.36
+MXL B2: 172.17.72.37
+MXL A2: 172.17.72.38
+
+Spine1: 172.17.72.39
+Spine2: 172.17.72.40
+
+------------------------------------------------------------------------------------------------
+VLANs & External Network: 
+------------------------------------------------------------------------------------------------
+Gateway 1: 172.17.69.1/24 --> spine 1 --> vlan 72
+Gateway 2: 172.17.69.2/24 --> spine 2 --> vlan 72
+
+================================================================================================
+Deployment Nodes:
+================================================================================================
+
+ESXi-01:
+	Description: The ESXi is where all managment functiuons exists, it includes Director (undercloud), and all other supporting services.
+	managment ip --> 172.17.69.10
+	idrac ip 	 --> 172.17.72.3
+	user: ***********
+	pass: ***********
+
+VCSA VM:
+	Description: vCenter Appliance
+	ip:   172.17.69.11
+	user: *****************
+	pass: *****************
+
+Automation and Development:
+	external Network: 172.17.69.14/24
+	user:	developer
+	pass:	*********
+
+VyOS:
+	user:	vyos
+	pass:	vyos
+	Interface        IP Address                        S/L  Description
+	---------        ----------                        ---  -----------
+	eth0             172.17.69.254/24                  u/u  Internet & Management Network
+	eth1             10.20.10.254/24                   u/u  Deployment Network
+	eth2             -                                 u/u  All Custom Vlans
+	eth2.100         172.17.17.1/24                    u/u  Provider Network vlan 100
+	lo               127.0.0.1/8                       u/u
+
+Director (Undercloud):
+	user: root
+	pass: *****
+	stack user: stack
+	stack pass: *****
+	ip: 
+		deployment: 10.20.10.1
+		external: 	172.17.69.13
+
+Overcloud VIP:
+	ip: 172.17.69.49
+	user: *****
+	pass: *****
+
+
+Cloud forms:
+	ip: 172.17.69.15
+	user: *****
+	pass: *****
+	os root pass: *****
+	os root pass: *****
+
+
+================================================================================================
+Preparing the development and automation machine:
+================================================================================================
+
+-----------------------------------------------------------------------------------------------
+Install Ansible on Automation Machine:
+-----------------------------------------------------------------------------------------------
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ansible-on-ubuntu-16-04
+
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get install ansible
+
+developer@developer-virtual-machine:~$ ansible --version
+ansible 2.6.3
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/home/developer/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/dist-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.12 (default, Dec  4 2017, 14:50:18) [GCC 5.4.0 20160609]
+
+
+sudo vi /etc/ansible/hosts
+
+-----------------------------------------------------------------------------------------------
+Configure the idrac to accept public key of the automation virtual machine:
+-----------------------------------------------------------------------------------------------
+on the automation machine: 
+generate a public and private key. the public key will be uploaded to the idrac and there are 2 ways to do that:
+	1- upload from the UI: https://www.dell.com/support/manuals/us/en/04/idrac8-with-lc-v2.05.05.05/idrac8_2.05.05.05_ug-v1/generating-public-keys-for-linux?guid=guid-6cebf7a0-e47d-414e-8864-e6a6d653aefd&lang=en-us
+	2- upload using the racadm command line tools.
+
+$ ssh-keygen -t rsa -b 1024 -C testing
+
+now we will install racadm tools on the automation so we can use it to upload the file. 
+reference to this bloig post: https://wyliehobbs.com/index.php/2015/09/23/install-racadm-on-ubuntu-debian-for-dell-idrac/
+
+
+-----------------------------------------------------------------------------------------------
+Install {racadm} on developer-virtual-machine:
+-----------------------------------------------------------------------------------------------
+Guide 1: http://linux.dell.com/repo/community/ubuntu/
+Guide 2: https://www.dell.com/support/manuals/us/en/04/integrated-dell-remote-access-cntrllr-8-with-lifecycle-controller-v2.00.00.00/racadm_idrac_pub-v1/sshpkauth?guid=guid-be12abd1-4995-4fa3-b090-9cb41321b7a4&lang=en-us
+
+sudo echo 'deb http://linux.dell.com/repo/community/ubuntu xenial openmanage' | sudo tee -a /etc/apt/sources.list.d/linux.dell.com.sources.list
+sudo gpg --keyserver pool.sks-keyservers.net --recv-key 1285491434D8786F
+gpg -a --export 1285491434D8786F | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install libssl-dev
+sudo apt-get install srvadmin-all
+racadm -r 172.17.72.18 -u roor -p calvin getsysinfo
+
+the output should show system information 
+
+
+get all keys for user: 
+where 2 is the userid and usually it revefers to the root user:
+racadm -r 172.17.72.18 -u developer -p changeme sshpkauth -v -i 2 -k all
+
+to upload a public key on the user idrac account for password less: 
+this is the location of the generated public key /home/developer/.ssh/id_rsa.pub
+
+racadm -r 172.17.72.18 -u developer -p changeme  sshpkauth -i 3 -k 2 -f /home/developer/.ssh/id_rsa.pub
+racadm -r 172.17.72.18 -u root -p calvin  sshpkauth -i 2 -k 1 -f /home/developer/.ssh/id_rsa.pub
+
+racadm -r 172.17.72.18 -u root -p calvin set iDRAC.Tuning.DefaultCredentialWarning Disabled
+
+-----------------------------------------------------------------------------------------------
+Create Users:
+-----------------------------------------------------------------------------------------------
+
+racadm -r 172.17.72.18 -u root -p calvin config -g cfgUserAdmin -o cfgUserAdminUserName -i 3 developer
+racadm -r 172.17.72.18 -u root -p calvin config -g cfgUserAdmin -o cfgUserAdminPassword -i 3 changeme
+
+racadm -r 172.17.72.18 -u root -p calvin config -g cfgUserAdmin -i 3 -o cfgUserAdminPrivilege 0x00000001
+racadm -r 172.17.72.18 -u root -p calvin config -g cfgUserAdmin -i 3 -o cfgUserAdminIpmiLanPrivilege 2
+racadm -r 172.17.72.18 -u root -p calvin config -g cfgUserAdmin -i 3 -o cfgUserAdminIpmiSerialPrivilege 2
+racadm -r 172.17.72.18 -u root -p calvin config -g cfgUserAdmin -i 3 -o cfgUserAdminSolEnable 1
+racadm -r 172.17.72.18 -u root -p calvin config -g cfgUserAdmin -i 3 -o cfgUserAdminEnable 1
+
+racadm -r 172.17.72.18 -u root -p calvin getconfig -u developer
+
+
+Creat user using set command:
+-----------------------------------------------------------------------------------------------
+Guide: https://github.com/CSCfi/ansible-role-dell/blob/master/files/racadm.sh
+
+normal user pribvilage : 0x1
+admin user privilage : 0x000001ff
+
+
+racadm -r 172.17.72.18 -u root -p calvin --nocertwarn set IDRAC.Users.4.UserName messei
+racadm -r 172.17.72.18 -u root -p calvin --nocertwarn set IDRAC.Users.4.Password changeme
+racadm -r 172.17.72.18 -u root -p calvin --nocertwarn set IDRAC.Users.4.Privilege 0x000001ff
+racadm -r 172.17.72.18 -u root -p calvin --nocertwarn set IDRAC.Users.4.IpmiLanPrivilege 4
+racadm -r 172.17.72.18 -u root -p calvin --nocertwarn set IDRAC.Users.4.SolEnable 1
+racadm -r 172.17.72.18 -u root -p calvin --nocertwarn set IDRAC.Users.4.Enable 1
+#racadm -r 172.17.72.18 -u root -p calvin set IDRAC.Users.4.IpmiSerialPrivilege 4
+
+final script:
+------------------
+
+#!/bin/sh
+
+adminUser="developer"
+adminPass="changeme"
+idracDefaultUser="root"
+idracDefaultPass="calvin"
+publicKeyFile="/home/developer/.ssh/id_rsa.pub"
+userIndex="4"
+
+
+for server in `cat server.list`;
+do
+    echo "Configuring idrac for server: $server ..."
+    echo "Creating user: $adminUser user with password: $adminPass ...."
+
+	racadm -r $server -u $idracDefaultUser -p $idracDefaultPass --nocertwarn set IDRAC.Users.$userIndex.UserName $adminUser
+	racadm -r $server -u $idracDefaultUser -p $idracDefaultPass --nocertwarn set IDRAC.Users.$userIndex.Password $adminPass
+	racadm -r $server -u $idracDefaultUser -p $idracDefaultPass --nocertwarn set IDRAC.Users.$userIndex.Privilege 0x000001ff
+	racadm -r $server -u $idracDefaultUser -p $idracDefaultPass --nocertwarn set IDRAC.Users.$userIndex.IpmiLanPrivilege 4
+	racadm -r $server -u $idracDefaultUser -p $idracDefaultPass --nocertwarn set IDRAC.Users.$userIndex.SolEnable 1
+	racadm -r $server -u $idracDefaultUser -p $idracDefaultPass --nocertwarn set IDRAC.Users.$userIndex.Enable 1
+
+	echo "done creating user"
+
+	echo "checking public key generation on localhost"	
+	if [ -f "$publicKeyFile" ]
+	then
+		echo "$publicKeyFile was found"
+		echo "Uploading public key from localhost:"
+		racadm -r $server -u $idracDefaultUser -p $idracDefaultPass --nocertwarn sshpkauth -i $userIndex -k 1 -f /home/developer/.ssh/id_rsa.pub
+
+	else
+		echo "$publicKeyFile was not found, attempting to create file"
+		ssh-keygen -t rsa -N "" -f $publicKeyFile
+	fi
+
+done
+
+
+disable warning:
+#!/bin/sh
+
+adminUser="developer"
+adminPass="changeme"
+idracDefaultUser="root"
+idracDefaultPass="calvin"
+publicKeyFile="/home/developer/.ssh/id_rsa.pub"
+userIndex="4"
+
+
+for server in `cat server.list`;
+do
+    echo "Configuring idrac for server: $server ..."
+    echo "getting the existing vdisks"
+
+	racadm -r $server -u $adminUser -p $adminPass --nocertwarn set iDRAC.Tuning.DefaultCredentialWarning Disabled
+	
+
+done
+
+
+
+deleting vDisks in Raid Configuration:
+-----------------------------------------------------------------------------------------------
+Guide: http://jonamiki.com/2015/01/23/view-create-delete-virtual-raid-volumes-with-racadm-on-an-r720-server-dell-12g/
+
+racadm -r 172.17.72.16 -u root -p calvin --nocertwarn storage deletevd:Disk.Virtual.0:RAID.Integrated.1-1
+racadm -r 172.17.72.16 -u root -p calvin --nocertwarn jobqueue  create RAID.Integrated.1-1 -s TIME_NOW --realtime
+racadm -r 172.17.72.17 -u root -p calvin --nocertwarn jobqueue view 
+
+
+if you want to gelete all jobs:
+racadm -r 172.17.72.17 -u root -p calvin --nocertwarn jobqueue delete --all
+
+racadm -r 172.17.72.17 -u root -p calvin --nocertwarn storage get status
+
+final script: 
+---------------------------
+#!/bin/sh
+
+adminUser="developer"
+adminPass="changeme"
+idracDefaultUser="root"
+idracDefaultPass="calvin"
+publicKeyFile="/home/developer/.ssh/id_rsa.pub"
+userIndex="4"
+list="deletevDisk.list"
+
+for server in `cat $list`;
+do
+    echo "Configuring idrac for server: $server ..."
+    echo "getting the existing vdisks"
+
+	vDiskCmdOutput=`racadm -r $server -u $adminUser -p $adminPass --nocertwarn raid get vdisks`
+	echo "\n\n"
+	echo "--- $server -----------------------------"
+	echo "$vDiskCmdOutput"
+	echo "----------------------------------------------"
+	echo ">> Raid 0 is configured with 2 disks ..."
+	echo ">> deleting virtual disks Disk.Virtual.0:RAID.Integrated.1-1 ...."
+	
+	racadm -r $server -u $adminUser -p $adminPass --nocertwarn storage deletevd:Disk.Virtual.0:RAID.Integrated.1-1
+	racadm -r $server -u $adminUser -p $adminPass --nocertwarn jobqueue  create RAID.Integrated.1-1 -s TIME_NOW --realtime
+	racadm -r $server -u $adminUser -p $adminPass --nocertwarn jobqueue view 
+
+
+
+	echo "\n\n"
+done
+
+
+get disks information: 
+----------------------------------
+#!/bin/sh
+
+adminUser="developer"
+adminPass="changeme"
+idracDefaultUser="root"
+idracDefaultPass="calvin"
+publicKeyFile="/home/developer/.ssh/id_rsa.pub"
+userIndex="4"
+
+
+for server in `cat server.list`;
+do
+    echo "Configuring idrac for server: $server ..."
+    echo "getting the existing vdisks"
+
+	vDiskCmdOutput=`racadm -r $server -u $adminUser -p $adminPass --nocertwarn raid get vdisks`
+	pDiskCmdOutput=`racadm -r $server -u $adminUser -p $adminPass --nocertwarn raid get pdisks`
+
+	echo "\n\n"
+	echo "--- $server vdisks -----------------------"
+	echo "$vDiskCmdOutput"
+	echo "----------------------------------------------"
+	echo "--- $server pdisks -----------------------"
+	echo "$pDiskCmdOutput"
+	echo "----------------------------------------------"
+	echo "\n\n"
+done
+
+
+Update BIOS: 
+----------------------------------------------------------------------------------------------
+racadm -r "IP" -u "user console"-p "password" update -f "firmware file.exe" -l NFS_server:/folder
+racadm -r <iDRAC IP address> -u <username> -p <password> fwupdate -g -u -a <path>
+
+
+Note: additional automation scripts are on the automation machines 
+
+
+
+
+==============================================================================================
+Network Configurations
+==============================================================================================
+The below is a configuration dump from the switches:
+----------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
+A1:
+----------------------------------------------------------------------------------------------
+
+
+
+----------------------------------------------------------------------------------------------
+A2:
+----------------------------------------------------------------------------------------------
+
+
+
+----------------------------------------------------------------------------------------------
+B1:
+----------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------
+B2:
+----------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------
+Spine1:
+----------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------
+Spine2:
+----------------------------------------------------------------------------------------------
+
+
+==============================================================================================
+OPENSTACK DEPLOYMENT OSP 13:
+==============================================================================================
+Director External -->  172.17.69.13 
+Director Deployment --> 10.20.10.1
+
+----------------------------------------------------------------------------------------------
+Preparing and validating containers images on local registery on the undercloud:
+----------------------------------------------------------------------------------------------
+#note: the prepare command include additional containers for ceph storage.
+
+openstack overcloud container image prepare \
+--namespace=registry.access.redhat.com/rhosp13 \
+--push-destination=10.20.10.1:8787 \
+--prefix=openstack- \
+-e /usr/share/openstack-tripleo-heat-templates/environments/ceph-ansible/ceph-ansible.yaml \
+-e /usr/share/openstack-tripleo-heat-templates/environments/services-docker/collectd.yaml \
+-e /usr/share/openstack-tripleo-heat-templates/environments/services-docker/fluentd-client.yaml \
+--set ceph_namespace=registry.access.redhat.com/rhceph \
+--set ceph_image=rhceph-3-rhel7 \
+--tag-from-label {version}-{release} \
+--output-env-file=/home/stack/templates/overcloud_images.yaml \
+--output-images-file /home/stack/local_registry_images.yaml
+
+upload the containers to the local registry:
+
+sudo openstack overcloud container image upload \
+  --config-file  /home/stack/local_registry_images.yaml \
+  --verbose
+
+validate the docker containers in the registry:
+curl http://10.20.10.1:8787/v2/_catalog | jq .repositories[]
+or
+curl http://10.20.10.1:8787/v2/_catalog | jq . 
+
+you can check teh repo rags using this command:
+skopeo inspect --tls-verify=false docker://10.20.10.1:8787/rhosp13/openstack-keystone | jq .RepoTags[]
+
+to validate a single docker container check the below command:
+skopeo inspect --tls-verify=false docker://10.20.10.1:8787/rhosp13/openstack-keystone:13.0-53
+
+to cross check the the from the cloud images yaml file and the registery check the image name and tag and then validate the same using the skopeop or curl command used before.
+cat templates/overcloud_images.yaml | grep keystone
+  DockerKeystoneConfigImage: 10.20.10.1:8787/rhosp13/openstack-keystone:13.0-53
+  DockerKeystoneImage: 10.20.10.1:8787/rhosp13/openstack-keystone:13.0-53
+
+the output of the command should be something like the below: 
+
+$ skopeo inspect --tls-verify=false docker://10.20.10.1:8787/rhosp13/openstack-keystone:13.0-53
+{
+    "Name": "10.20.10.1:8787/rhosp13/openstack-keystone",
+    "Digest": "sha256:1f5b1a4168b8c02ca03b39c29314a32df977721a762174099208abc97cec902f",
+    "RepoTags": [
+        "13.0-53"
+    ],
+    "Created": "2018-08-16T01:55:17.36261Z",
+    "DockerVersion": "1.12.6",
+    "Labels": {
+        "architecture": "x86_64",
+        "authoritative-source-url": "registry.access.redhat.com",
+        "batch": "20180814.1",
+        "build-date": "2018-08-16T01:54:55.959066",
+        "com.redhat.build-host": "osbs-cpt-007.ocp.osbs.upshift.eng.rdu2.redhat.com",
+        "com.redhat.component": "openstack-keystone-container",
+        "description": "Red Hat OpenStack Platform 13.0 keystone",
+        "distribution-scope": "public",
+        "io.k8s.description": "Red Hat OpenStack Platform 13.0 keystone",
+        "io.k8s.display-name": "Red Hat OpenStack Platform 13.0 keystone",
+        "io.openshift.expose-services": "",
+        "io.openshift.tags": "rhosp osp openstack osp-13.0",
+        "maintainer": "Red Hat, Inc.",
+        "name": "rhosp13/openstack-keystone",
+        "release": "53",
+        "summary": "Red Hat OpenStack Platform 13.0 keystone",
+        "url": "https://access.redhat.com/containers/#/registry.access.redhat.com/rhosp13/openstack-keystone/images/13.0-53",
+        "usage": "This image is very generic and does not serve a single use case. Use it as a base to build your own images.",
+        "vcs-ref": "29ff48fe838d66f3a2f886dc8cc02e310e09e42a",
+        "vcs-type": "git",
+        "vendor": "Red Hat, Inc.",
+        "version": "13.0"
+    },
+    "Architecture": "amd64",
+    "Os": "linux",
+    "Layers": [
+        "sha256:378837c0e24ad4a2e33f0eb3d68dc0c31d9a7dbbd5357d4acafec1d3a7930602",
+        "sha256:e17262bc23414bd3c0e9808ad7a87b055fe5afec386da42115a839ea2083d233",
+        "sha256:8c2b108a3545995c61d8907ce772975fba6f54b98d81e65a2a0ca4aa777931fa",
+        "sha256:b8b6014d57c08575c8a3c0c00a3bf5342ab91d940adbbbbf2e642d46ad267c23",
+        "sha256:bad492528fc8f4a7eeb78a7570b50bc03491994936f5228cac634d3a75c91cbd",
+        "sha256:a73115a8c37bc7383a1512519b55f59c6f79406548386a8eef6a1c9102ea8b57"
+    ]
+}
+
+
+----------------------------------------------------------------------------------------------
+Getting the First NIC Port Mac Address: 
+----------------------------------------------------------------------------------------------
+developer@developer-virtual-machine:~/openstack_blade_servers_automation$ ./getFirstNicMac.sh
+getting the First Integrated NIC
+
+
+--- 172.17.72.4  -----------------------
+NIC.Integrated.1-1-1    Ethernet                = E0:D8:48:19:22:8E
+----------------------------------------------
+
+
+getting the First Integrated NIC
+
+
+--- 172.17.72.5  -----------------------
+NIC.Integrated.1-1-1    Ethernet                = E0:D8:48:19:22:9B
+----------------------------------------------
+
+
+----------------------------------------------------------------------------------------------
+usefull commands while doing introspection: 
+----------------------------------------------------------------------------------------------
+
+for node in $(openstack baremetal node list --fields uuid -f value) ; do echo $node;  openstack baremetal introspection interface list $node ; done 
+for node in $(openstack baremetal node list --fields name -f value) ; do echo $node;  openstack baremetal introspection data save $node | jq . > ~/introspection_data/$node.data; done  
+
+for node in $(openstack baremetal node list --fields name -f value) ; do echo $node;  openstack baremetal introspection data save $node | jq .numa_topology > ~/introspection_data/$node.numa_topology; done  
+
+for node in $(openstack baremetal node list --fields uuid -f value) ; do echo $node;  openstack baremetal node delete $node ; done 
+
+for node in $(openstack baremetal node list --fields uuid -f value) ; do echo $node;  openstack baremetal node set --property root_device='{"name": "/dev/sda"}' $node ; done 
+# set the compute profile
+for node in compute_1 compute_2 compute_3; do openstack baremetal node set --property capabilities='profile:compute,boot_option:local' $node; done
+# set the controller profile
+for node in control_1 control_2 control_3; do openstack baremetal node set --property capabilities='profile:control,boot_option:local' $node; done
+# set the storage profile
+for node in ceph_1 ceph_2 ceph_3; do openstack baremetal node set --property capabilities='profile:ceph-storage,boot_option:local' $node; done
+
+openstack baremetal node manage control_1
+
+
+
+
+
+[root@overcloud10-controller-0 ~]# egrep -v "^$|#" /var/lib/config-data/puppet-generated/neutron/etc/neutron/plugins/ml2/openvswitch_agent.ini
+[ovs]
+bridge_mappings=datacentre:br-ex
+integration_bridge=br-int
+tunnel_bridge=br-tun
+local_ip=10.10.40.50
+[agent]
+l2_population=False
+arp_responder=False
+enable_distributed_routing=False
+drop_flows_on_start=False
+extensions=qos
+tunnel_types=vxlan
+vxlan_udp_port=4789
+[securitygroup]
+firewall_driver=iptables_hybrid
+
+
+
+==============================================================================================
+Troublshooting Deployment:
+==============================================================================================
+
+1- introspection takes long time and timout because of cleanup tasks, to fix do the following to disable cleanup
+----------------------------------------------------------------------------------------------
+disable cleaning:
+----------------------------------------------------------------------------------------------
+Edit the /etc/ironic/ironic.conf to disable cleaning:
+[conductor]
+automated_clean = false
+
+sudo systemctl restart openstack-ironic-api.service
+sudo systemctl restart openstack-ironic-conductor.service
+sudo systemctl restart openstack-ironic-inspector-dnsmasq.service
+sudo systemctl restart openstack-ironic-inspector.service
+
+2- the deployment was failing sometimes when trying to ping the Gateway, the reason for that is beause of the blade architecture, that is using the 1 card as integrated, and the other one is mezzanien, even filed a bug for the same with redhat on bugzilla. however, there was no clue. the configuration i was using was picking 1 interface from the integrated card and using it as deployment network. then using a bond made of 2 interfaces, 1 from the integrated and another from the mazanien card. such configuration was not stable at all. while it's recommende to cross use the ports when creating bonds, however, this was not working well on blade, with linux bridges. below is the error i was recieving. which totally disapeared after changing the configuration. the final configurations, includ 1 bond from integrated card (for all VLANs), and 1 interface from Mazanien for deployment network. 
+
+2018-09-08 16:14:15Z [overcloud7.ComputeAllNodesValidationDeployment.0]: CREATE_COMPLETE  state changed
+2018-09-08 16:14:16Z [overcloud7.ComputeAllNodesValidationDeployment]: CREATE_COMPLETE  Stack CREATE completed successfully
+2018-09-08 16:14:16Z [overcloud7.ComputeAllNodesValidationDeployment]: CREATE_COMPLETE  state changed
+2018-09-08 16:14:27Z [overcloud7.CephStorageAllNodesValidationDeployment.1]: SIGNAL_IN_PROGRESS  Signal: deployment ab43056d-264f-4cb6-be30-ef95de8bf424 succeeded
+2018-09-08 16:14:28Z [overcloud7.CephStorageAllNodesValidationDeployment.1]: CREATE_COMPLETE  state changed
+2018-09-08 16:14:30Z [overcloud7.CephStorageAllNodesValidationDeployment.2]: SIGNAL_IN_PROGRESS  Signal: deployment 4178345f-4d7f-4645-9156-554c90bb7dd1 succeeded
+2018-09-08 16:14:30Z [overcloud7.CephStorageAllNodesValidationDeployment.2]: CREATE_COMPLETE  state changed
+2018-09-08 16:14:31Z [overcloud7.CephStorageAllNodesValidationDeployment]: CREATE_COMPLETE  Stack CREATE completed successfully
+2018-09-08 16:14:31Z [overcloud7.CephStorageAllNodesValidationDeployment]: CREATE_COMPLETE  state changed
+2018-09-08 16:24:41Z [overcloud7.ControllerAllNodesValidationDeployment.0]: SIGNAL_IN_PROGRESS  Signal: deployment ccc365e3-cbd3-495f-b5d3-016b6c165996 failed (1)
+2018-09-08 16:24:42Z [overcloud7.ControllerAllNodesValidationDeployment.0]: CREATE_FAILED  Error: resources[0]: Deployment to server failed: deploy_status_code : Deployment exited with non-zero status code: 1
+2018-09-08 16:24:42Z [overcloud7.ControllerAllNodesValidationDeployment]: CREATE_FAILED  Resource CREATE failed: Error: resources[0]: Deployment to server failed: deploy_status_code : Deployment exited with non-zero status code: 1
+2018-09-08 16:24:42Z [overcloud7.ControllerAllNodesValidationDeployment]: CREATE_FAILED  Error: resources.ControllerAllNodesValidationDeployment.resources[0]: Deployment to server failed: deploy_status_code: Deployment exited with non-zero status code: 1
+2018-09-08 16:24:42Z [overcloud7]: CREATE_FAILED  Resource CREATE failed: Error: resources.ControllerAllNodesValidationDeployment.resources[0]: Deployment to server failed: deploy_status_code: Deployment exited with non-zero status code: 1
+
+ Stack overcloud7 CREATE_FAILED
+
+overcloud7.ControllerAllNodesValidationDeployment.0:
+  resource_type: OS::Heat::StructuredDeployment
+  physical_resource_id: ccc365e3-cbd3-495f-b5d3-016b6c165996
+  status: CREATE_FAILED
+  status_reason: |
+    Error: resources[0]: Deployment to server failed: deploy_status_code : Deployment exited with non-zero status code: 1
+  deploy_stdout: |
+    ...
+    Ping to 172.17.69.1 failed. Retrying...
+    Ping to 172.17.69.1 failed. Retrying...
+    Ping to 172.17.69.1 failed. Retrying...
+    Ping to 172.17.69.1 failed. Retrying...
+    Ping to 172.17.69.1 failed. Retrying...
+    Ping toHeat Stack create failed.
+2018-09-08 09:24:46.576 39578 ERROR openstack [  admin] Heat Stack create failed.
+ failed. Retrying...
+    Ping to 172.17.69.1 failed. Retrying...
+    FAILURE
+    172.17.69.1 is not pingable.
+    (truncated, view all with --long)
+  deploy_stderr: |
+
+
+3- the deployment doesnt check for the created VLAN before or after, i was missing the tenant VLAn in the deployment files, and the deployment went well, but then it was failing to creat virtual machines. once updated the files, all is working fine.
+
+4- the deployment hangs when using ceph services in containers. i have removed it from the deployment scripts and everything went fine, deployment took almost 2 hours or less.
+
