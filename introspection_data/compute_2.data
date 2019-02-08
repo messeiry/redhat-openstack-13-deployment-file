@@ -1,0 +1,1430 @@
+{
+  "inventory": {
+    "cpu": {
+      "architecture": "x86_64",
+      "model_name": "Intel(R) Xeon(R) CPU E5-2650 v4 @ 2.20GHz",
+      "flags": [
+        "fpu",
+        "vme",
+        "de",
+        "pse",
+        "tsc",
+        "msr",
+        "pae",
+        "mce",
+        "cx8",
+        "apic",
+        "sep",
+        "mtrr",
+        "pge",
+        "mca",
+        "cmov",
+        "pat",
+        "pse36",
+        "clflush",
+        "dts",
+        "acpi",
+        "mmx",
+        "fxsr",
+        "sse",
+        "sse2",
+        "ss",
+        "ht",
+        "tm",
+        "pbe",
+        "syscall",
+        "nx",
+        "pdpe1gb",
+        "rdtscp",
+        "lm",
+        "constant_tsc",
+        "arch_perfmon",
+        "pebs",
+        "bts",
+        "rep_good",
+        "nopl",
+        "xtopology",
+        "nonstop_tsc",
+        "aperfmperf",
+        "eagerfpu",
+        "pni",
+        "pclmulqdq",
+        "dtes64",
+        "monitor",
+        "ds_cpl",
+        "vmx",
+        "smx",
+        "est",
+        "tm2",
+        "ssse3",
+        "sdbg",
+        "fma",
+        "cx16",
+        "xtpr",
+        "pdcm",
+        "pcid",
+        "dca",
+        "sse4_1",
+        "sse4_2",
+        "x2apic",
+        "movbe",
+        "popcnt",
+        "aes",
+        "xsave",
+        "avx",
+        "f16c",
+        "rdrand",
+        "lahf_lm",
+        "abm",
+        "3dnowprefetch",
+        "epb",
+        "cat_l3",
+        "cdp_l3",
+        "intel_pt",
+        "tpr_shadow",
+        "vnmi",
+        "flexpriority",
+        "ept",
+        "vpid",
+        "fsgsbase",
+        "tsc_adjust",
+        "bmi1",
+        "hle",
+        "avx2",
+        "smep",
+        "bmi2",
+        "erms",
+        "invpcid",
+        "rtm",
+        "cqm",
+        "rdt_a",
+        "rdseed",
+        "adx",
+        "smap",
+        "xsaveopt",
+        "cqm_llc",
+        "cqm_occup_llc",
+        "cqm_mbm_total",
+        "cqm_mbm_local",
+        "dtherm",
+        "ida",
+        "arat",
+        "pln",
+        "pts"
+      ],
+      "frequency": "2900.0000",
+      "count": 48
+    },
+    "memory": {
+      "total": 270372937728,
+      "physical_mb": 262144
+    },
+    "system_vendor": {
+      "manufacturer": "Dell Inc.",
+      "product_name": "PowerEdge M630 (SKU=NotProvided;ModelName=PowerEdge M630)",
+      "serial_number": "6B7BHK2"
+    },
+    "boot": {
+      "pxe_interface": "e0:d8:48:19:22:c2",
+      "current_boot_mode": "bios"
+    },
+    "disks": [
+      {
+        "size": 600127266816,
+        "serial": "5000c5009f41bf47",
+        "wwn": "0x5000c5009f41bf47",
+        "rotational": true,
+        "vendor": "SEAGATE",
+        "name": "/dev/sda",
+        "wwn_vendor_extension": null,
+        "hctl": "0:0:0:0",
+        "wwn_with_extension": "0x5000c5009f41bf47",
+        "by_path": "/dev/disk/by-path/pci-0000:03:00.0-scsi-0:0:0:0",
+        "model": "ST600MM0238"
+      },
+      {
+        "size": 600127266816,
+        "serial": "5000c5009f4240cb",
+        "wwn": "0x5000c5009f4240cb",
+        "rotational": true,
+        "vendor": "SEAGATE",
+        "name": "/dev/sdb",
+        "wwn_vendor_extension": null,
+        "hctl": "0:0:1:0",
+        "wwn_with_extension": "0x5000c5009f4240cb",
+        "by_path": "/dev/disk/by-path/pci-0000:03:00.0-scsi-0:0:1:0",
+        "model": "ST600MM0238"
+      }
+    ],
+    "interfaces": [
+      {
+        "mac_address": "e0:d8:48:19:22:c8",
+        "lldp": [
+          [
+            1,
+            "04141877f88747"
+          ],
+          [
+            2,
+            "0554656e4769676162697445746865726e657420302f36"
+          ],
+          [
+            3,
+            "0078"
+          ],
+          [
+            127,
+            "0080c20b0800"
+          ],
+          [
+            127,
+            "0080c209040000000064000000000000000200000000000000"
+          ],
+          [
+            127,
+            "0080c20a000000000064000000000000000200000000000000"
+          ],
+          [
+            0,
+            ""
+          ]
+        ],
+        "product": "0x10f8",
+        "vendor": "0x8086",
+        "name": "p2p2",
+        "has_carrier": true,
+        "ipv4_address": null,
+        "biosdevname": "p2p2",
+        "client_id": null
+      },
+      {
+        "mac_address": "e0:d8:48:19:22:c6",
+        "lldp": [
+          [
+            1,
+            "04141877fb6879"
+          ],
+          [
+            2,
+            "0554656e4769676162697445746865726e657420302f36"
+          ],
+          [
+            3,
+            "0078"
+          ],
+          [
+            127,
+            "001b2102020a00000000000100000000041100008000000000006400000000000000040606000080000008"
+          ],
+          [
+            0,
+            ""
+          ]
+        ],
+        "product": "0x10f8",
+        "vendor": "0x8086",
+        "name": "p2p1",
+        "has_carrier": true,
+        "ipv4_address": null,
+        "biosdevname": "p2p1",
+        "client_id": null
+      },
+      {
+        "mac_address": "e0:d8:48:19:22:c2",
+        "lldp": [
+          [
+            1,
+            "04141877f888cf"
+          ],
+          [
+            2,
+            "0554656e4769676162697445746865726e657420302f36"
+          ],
+          [
+            3,
+            "0078"
+          ],
+          [
+            127,
+            "0080c20b0800"
+          ],
+          [
+            127,
+            "0080c209040000000064000000000000000200000000000000"
+          ],
+          [
+            127,
+            "0080c20a000000000064000000000000000200000000000000"
+          ],
+          [
+            0,
+            ""
+          ]
+        ],
+        "product": "0x10f8",
+        "vendor": "0x8086",
+        "name": "em1",
+        "has_carrier": true,
+        "ipv4_address": "10.20.10.112",
+        "biosdevname": "em1",
+        "client_id": null
+      },
+      {
+        "mac_address": "e0:d8:48:19:22:c4",
+        "lldp": [
+          [
+            1,
+            "04141877fb69ad"
+          ],
+          [
+            2,
+            "0554656e4769676162697445746865726e657420302f36"
+          ],
+          [
+            3,
+            "0078"
+          ],
+          [
+            127,
+            "001b2102020a00000000000100000000041100008000000000006400000000000000040606000080000008"
+          ],
+          [
+            0,
+            ""
+          ]
+        ],
+        "product": "0x10f8",
+        "vendor": "0x8086",
+        "name": "em2",
+        "has_carrier": true,
+        "ipv4_address": null,
+        "biosdevname": "em2",
+        "client_id": null
+      }
+    ],
+    "bmc_address": "172.17.72.8"
+  },
+  "interfaces": {
+    "em1": {
+      "pxe": true,
+      "client_id": null,
+      "lldp_processed": {
+        "switch_chassis_id": "14:18:77:f8:88:cf",
+        "switch_port_id": "TenGigabitEthernet 0/6"
+      },
+      "mac": "e0:d8:48:19:22:c2",
+      "ip": "10.20.10.112"
+    }
+  },
+  "local_gb": 557,
+  "error": null,
+  "numa_topology": {
+    "cpus": [
+      {
+        "cpu": 3,
+        "thread_siblings": [
+          7,
+          31
+        ],
+        "numa_node": 1
+      },
+      {
+        "cpu": 10,
+        "thread_siblings": [
+          16,
+          40
+        ],
+        "numa_node": 0
+      },
+      {
+        "cpu": 3,
+        "thread_siblings": [
+          6,
+          30
+        ],
+        "numa_node": 0
+      },
+      {
+        "cpu": 11,
+        "thread_siblings": [
+          19,
+          43
+        ],
+        "numa_node": 1
+      },
+      {
+        "cpu": 2,
+        "thread_siblings": [
+          5,
+          29
+        ],
+        "numa_node": 1
+      },
+      {
+        "cpu": 5,
+        "thread_siblings": [
+          11,
+          35
+        ],
+        "numa_node": 1
+      },
+      {
+        "cpu": 11,
+        "thread_siblings": [
+          18,
+          42
+        ],
+        "numa_node": 0
+      },
+      {
+        "cpu": 4,
+        "thread_siblings": [
+          8,
+          32
+        ],
+        "numa_node": 0
+      },
+      {
+        "cpu": 10,
+        "thread_siblings": [
+          17,
+          41
+        ],
+        "numa_node": 1
+      },
+      {
+        "cpu": 1,
+        "thread_siblings": [
+          3,
+          27
+        ],
+        "numa_node": 1
+      },
+      {
+        "cpu": 0,
+        "thread_siblings": [
+          0,
+          24
+        ],
+        "numa_node": 0
+      },
+      {
+        "cpu": 13,
+        "thread_siblings": [
+          23,
+          47
+        ],
+        "numa_node": 1
+      },
+      {
+        "cpu": 4,
+        "thread_siblings": [
+          9,
+          33
+        ],
+        "numa_node": 1
+      },
+      {
+        "cpu": 12,
+        "thread_siblings": [
+          20,
+          44
+        ],
+        "numa_node": 0
+      },
+      {
+        "cpu": 5,
+        "thread_siblings": [
+          10,
+          34
+        ],
+        "numa_node": 0
+      },
+      {
+        "cpu": 9,
+        "thread_siblings": [
+          15,
+          39
+        ],
+        "numa_node": 1
+      },
+      {
+        "cpu": 0,
+        "thread_siblings": [
+          1,
+          25
+        ],
+        "numa_node": 1
+      },
+      {
+        "cpu": 8,
+        "thread_siblings": [
+          12,
+          36
+        ],
+        "numa_node": 0
+      },
+      {
+        "cpu": 1,
+        "thread_siblings": [
+          2,
+          26
+        ],
+        "numa_node": 0
+      },
+      {
+        "cpu": 12,
+        "thread_siblings": [
+          21,
+          45
+        ],
+        "numa_node": 1
+      },
+      {
+        "cpu": 13,
+        "thread_siblings": [
+          22,
+          46
+        ],
+        "numa_node": 0
+      },
+      {
+        "cpu": 8,
+        "thread_siblings": [
+          13,
+          37
+        ],
+        "numa_node": 1
+      },
+      {
+        "cpu": 9,
+        "thread_siblings": [
+          14,
+          38
+        ],
+        "numa_node": 0
+      },
+      {
+        "cpu": 2,
+        "thread_siblings": [
+          4,
+          28
+        ],
+        "numa_node": 0
+      }
+    ],
+    "ram": [
+      {
+        "size_kb": 134121752,
+        "numa_node": 0
+      },
+      {
+        "size_kb": 134217728,
+        "numa_node": 1
+      }
+    ],
+    "nics": [
+      {
+        "name": "p2p2",
+        "numa_node": 0
+      },
+      {
+        "name": "p2p1",
+        "numa_node": 0
+      },
+      {
+        "name": "em1",
+        "numa_node": 0
+      },
+      {
+        "name": "em2",
+        "numa_node": 0
+      }
+    ]
+  },
+  "ipmi_address": "172.17.72.8",
+  "cpu_arch": "x86_64",
+  "macs": [
+    "e0:d8:48:19:22:c2"
+  ],
+  "root_disk": {
+    "size": 600127266816,
+    "serial": "5000c5009f41bf47",
+    "wwn": "0x5000c5009f41bf47",
+    "rotational": true,
+    "vendor": "SEAGATE",
+    "name": "/dev/sda",
+    "wwn_vendor_extension": null,
+    "hctl": "0:0:0:0",
+    "wwn_with_extension": "0x5000c5009f41bf47",
+    "by_path": "/dev/disk/by-path/pci-0000:03:00.0-scsi-0:0:0:0",
+    "model": "ST600MM0238"
+  },
+  "extra": {
+    "cpu": {
+      "physical": {
+        "number": 2
+      },
+      "logical": {
+        "number": 48
+      },
+      "physical_1": {
+        "flags": "lm fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch epb cat_l3 cdp_l3 intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm rdt_a rdseed adx smap xsaveopt cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local dtherm ida arat pln pts cpufreq",
+        "cores": 12,
+        "physid": 401,
+        "product": "Intel(R) Xeon(R) CPU E5-2650 v4 @ 2.20GHz",
+        "enabled_cores": 12,
+        "vendor": "Intel Corp.",
+        "clock": 1010065408,
+        "frequency": 2852319000,
+        "version": "Intel(R) Xeon(R) CPU E5-2650 v4 @ 2.20GHz",
+        "threads": 24
+      },
+      "physical_0": {
+        "flags": "lm fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch epb cat_l3 cdp_l3 intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm rdt_a rdseed adx smap xsaveopt cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local dtherm ida arat pln pts cpufreq",
+        "cores": 12,
+        "physid": 400,
+        "product": "Intel(R) Xeon(R) CPU E5-2650 v4 @ 2.20GHz",
+        "enabled_cores": 12,
+        "vendor": "Intel Corp.",
+        "clock": 1010065408,
+        "frequency": 2673461000,
+        "version": "Intel(R) Xeon(R) CPU E5-2650 v4 @ 2.20GHz",
+        "threads": 24
+      }
+    },
+    "disk": {
+      "sdb": {
+        "size": 600,
+        "model": "ST600MM0238",
+        "Read Cache Disable": 0,
+        "Write Cache Enable": 0,
+        "rotational": 1,
+        "vendor": "SEAGATE",
+        "scsi-id": "scsi-35000c5009f4240cb",
+        "rev": "BS04",
+        "optimal_io_size": 0,
+        "wwn-id": "wwn-0x5000c5009f4240cb",
+        "physical_block_size": 512
+      },
+      "sda": {
+        "size": 600,
+        "model": "ST600MM0238",
+        "Read Cache Disable": 0,
+        "Write Cache Enable": 0,
+        "rotational": 1,
+        "vendor": "SEAGATE",
+        "scsi-id": "scsi-35000c5009f41bf47",
+        "rev": "BS04",
+        "optimal_io_size": 0,
+        "wwn-id": "wwn-0x5000c5009f41bf47",
+        "physical_block_size": 512
+      },
+      "logical": {
+        "count": 2
+      }
+    },
+    "memory": {
+      "bank:19": {
+        "description": "[empty]",
+        "slot": "B8"
+      },
+      "banks": {
+        "count": 24
+      },
+      "bank:17": {
+        "description": "[empty]",
+        "slot": "B6"
+      },
+      "bank:16": {
+        "description": "[empty]",
+        "slot": "B5"
+      },
+      "bank:15": {
+        "size": 34359738368,
+        "serial": "1979BA8D",
+        "clock": 2.4e+09,
+        "description": "DIMM DDR4 Synchronous Registered (Buffered) 2400 MHz (0.4 ns)",
+        "vendor": "00CE00B300CE",
+        "product": "M393A4K40BB1-CRC",
+        "slot": "B4"
+      },
+      "bank:14": {
+        "size": 34359738368,
+        "serial": "1979B9E5",
+        "clock": 2.4e+09,
+        "description": "DIMM DDR4 Synchronous Registered (Buffered) 2400 MHz (0.4 ns)",
+        "vendor": "00CE00B300CE",
+        "product": "M393A4K40BB1-CRC",
+        "slot": "B3"
+      },
+      "bank:13": {
+        "size": 34359738368,
+        "serial": "1979BA94",
+        "clock": 2.4e+09,
+        "description": "DIMM DDR4 Synchronous Registered (Buffered) 2400 MHz (0.4 ns)",
+        "vendor": "00CE00B300CE",
+        "product": "M393A4K40BB1-CRC",
+        "slot": "B2"
+      },
+      "bank:12": {
+        "size": 34359738368,
+        "serial": "1979B715",
+        "clock": 2.4e+09,
+        "description": "DIMM DDR4 Synchronous Registered (Buffered) 2400 MHz (0.4 ns)",
+        "vendor": "00CE00B300CE",
+        "product": "M393A4K40BB1-CRC",
+        "slot": "B1"
+      },
+      "bank:11": {
+        "description": "[empty]",
+        "slot": "A12"
+      },
+      "bank:10": {
+        "description": "[empty]",
+        "slot": "A11"
+      },
+      "bank:6": {
+        "description": "[empty]",
+        "slot": "A7"
+      },
+      "bank:1": {
+        "size": 34359738368,
+        "serial": "1979B832",
+        "clock": 2.4e+09,
+        "description": "DIMM DDR4 Synchronous Registered (Buffered) 2400 MHz (0.4 ns)",
+        "vendor": "00CE00B300CE",
+        "product": "M393A4K40BB1-CRC",
+        "slot": "A2"
+      },
+      "bank:0": {
+        "size": 34359738368,
+        "serial": "19799B5E",
+        "clock": 2.4e+09,
+        "description": "DIMM DDR4 Synchronous Registered (Buffered) 2400 MHz (0.4 ns)",
+        "vendor": "00CE00B300CE",
+        "product": "M393A4K40BB1-CRC",
+        "slot": "A1"
+      },
+      "bank:3": {
+        "size": 34359738368,
+        "serial": "19799AAA",
+        "clock": 2.4e+09,
+        "description": "DIMM DDR4 Synchronous Registered (Buffered) 2400 MHz (0.4 ns)",
+        "vendor": "00CE00B300CE",
+        "product": "M393A4K40BB1-CRC",
+        "slot": "A4"
+      },
+      "bank:2": {
+        "size": 34359738368,
+        "serial": "1979BA90",
+        "clock": 2.4e+09,
+        "description": "DIMM DDR4 Synchronous Registered (Buffered) 2400 MHz (0.4 ns)",
+        "vendor": "00CE00B300CE",
+        "product": "M393A4K40BB1-CRC",
+        "slot": "A3"
+      },
+      "bank:9": {
+        "description": "[empty]",
+        "slot": "A10"
+      },
+      "bank:8": {
+        "description": "[empty]",
+        "slot": "A9"
+      },
+      "total": {
+        "size": 274877906944
+      },
+      "bank:7": {
+        "description": "[empty]",
+        "slot": "A8"
+      },
+      "bank:4": {
+        "description": "[empty]",
+        "slot": "A5"
+      },
+      "bank:5": {
+        "description": "[empty]",
+        "slot": "A6"
+      },
+      "bank:21": {
+        "description": "[empty]",
+        "slot": "B10"
+      },
+      "bank:20": {
+        "description": "[empty]",
+        "slot": "B9"
+      },
+      "bank:23": {
+        "description": "[empty]",
+        "slot": "B12"
+      },
+      "bank:22": {
+        "description": "[empty]",
+        "slot": "B11"
+      },
+      "bank:18": {
+        "description": "[empty]",
+        "slot": "B7"
+      }
+    },
+    "system": {
+      "ipmi": {
+        "channel": 1
+      },
+      "product": {
+        "uuid": "4C4C4544-0042-3710-8042-B6C04F484B32",
+        "name": "PowerEdge M630 (SKU=NotProvided;ModelName=PowerEdge M630)",
+        "vendor": "Dell Inc.",
+        "version": "PowerEdge M1000e",
+        "serial": "6B7BHK2"
+      },
+      "kernel": {
+        "arch": "x86_64",
+        "version": "3.10.0-862.6.3.el7.x86_64",
+        "cmdline": "ipa-inspection-callback-url=http://10.20.10.1:5050/v1/continue ipa-inspection-collectors=default,extra-hardware,numa-topology,logs systemd.journald.forward_to_console=yes BOOTIF=e0:d8:48:19:22:c2 ipa-debug=1 ipa-inspection-dhcp-all-interfaces=1 ipa-collect-lldp=1 initrd=agent.ramdisk"
+      },
+      "motherboard": {
+        "vendor": "Dell Inc.",
+        "serial": ".6C6BHK2..06."
+      }
+    },
+    "firmware": {
+      "bios": {
+        "vendor": "Dell Inc.",
+        "version": "2.4.2",
+        "date": "01/09/2017"
+      }
+    },
+    "ipmi": {
+      "Fatal IO Error": {
+        "value": "0x00"
+      },
+      "Fab A Status": {
+        "value": "Not Readable"
+      },
+      "Mem Overtemp": {
+        "value": "0x00"
+      },
+      "5V AUX PG": {
+        "value": "0x00"
+      },
+      "LinkT/FlexAddr": {
+        "value": "0x00"
+      },
+      "PCI System Err": {
+        "value": "Not Readable"
+      },
+      "USB Over-current": {
+        "value": "0x00"
+      },
+      "Chipset Err": {
+        "value": "0x00"
+      },
+      "MEM Usage": {
+        "unit": "percent",
+        "value": 0
+      },
+      "FatalPCI SSD Err": {
+        "value": "Not Readable"
+      },
+      "CPU Usage": {
+        "unit": "percent",
+        "value": 2
+      },
+      "iDPT Mem Fail": {
+        "value": "0x00"
+      },
+      "Temp": {
+        "unit": "degrees C",
+        "value": 42
+      },
+      "lan": {
+        "subnet-mask": "255.255.255.0",
+        "mac-address": "e0:d8:48:19:22:c1",
+        "cipher-suite-priv-max": "Xaaaaaaaaaaaaaa",
+        "backup-gateway-mac": "00:00:00:00:00:00",
+        "backup-gateway-ip": "0.0.0.0",
+        "gratituous-arp-intrvl": "2.0 seconds",
+        "ip-address-source": "Static Address",
+        "rmcp+-cipher-suites": "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14",
+        "set-in-progress": "Set Complete",
+        "default-gateway-ip": "172.17.72.254",
+        "802.1q-vlan-priority": 0,
+        "802.1q-vlan-id": "Disabled",
+        "bmc-arp-control": "ARP Responses Enabled, Gratuitous ARP Disabled",
+        "auth-type-enable": "Callback : MD5",
+        "ip-header": "TTL=0x40 Flags=0x40 Precedence=0x00 TOS=0x10",
+        "bad-password-threshold": "Not Available",
+        "ip-address": "172.17.72.8",
+        "default-gateway-mac": "00:00:00:00:00:00",
+        "auth-type-support": "MD5",
+        "snmp-community-string": "public"
+      },
+      "I/O Channel Chk": {
+        "value": "Not Readable"
+      },
+      "A": {
+        "value": "0x00"
+      },
+      "Mem Fatal NB CRC": {
+        "value": "0x00"
+      },
+      "M23 VDDQ PG": {
+        "value": "0x00"
+      },
+      "Err Reg Pointer": {
+        "value": "0x00"
+      },
+      "ECC Corr Err": {
+        "value": "0x93"
+      },
+      "NonFatalSSDEr": {
+        "value": "Not Readable"
+      },
+      "Current": {
+        "unit": "Amps",
+        "value": "0.80"
+      },
+      "SD2": {
+        "value": "Not Readable"
+      },
+      "SD1": {
+        "value": "Not Readable"
+      },
+      "Memory Removed": {
+        "value": "0x00"
+      },
+      "IO Usage": {
+        "unit": "percent",
+        "value": 0
+      },
+      "Drive0": {
+        "value": "0x00"
+      },
+      "POST Err": {
+        "value": "0x00"
+      },
+      "Hdwr version err": {
+        "value": "0x00"
+      },
+      "ECC Uncorr Err": {
+        "value": "Not Readable"
+      },
+      "VCORE PG": {
+        "value": "0x00"
+      },
+      "TXT Status": {
+        "value": "0x00"
+      },
+      "Additional Info": {
+        "value": "0x00"
+      },
+      "Memory Cfg Err": {
+        "value": "0x00"
+      },
+      "Memory Spared": {
+        "value": "0x00"
+      },
+      "Presence": {
+        "value": "0x00"
+      },
+      "Memory Mirrored": {
+        "value": "0x00"
+      },
+      "M01 VDDQ PG": {
+        "value": "0x00"
+      },
+      "CMOS Battery": {
+        "value": "0x00"
+      },
+      "3.3V PG": {
+        "value": "0x00"
+      },
+      "Memory Added": {
+        "value": "0x00"
+      },
+      "VCCIO PG": {
+        "value": "0x00"
+      },
+      "Link Error": {
+        "value": "Not Readable"
+      },
+      "2.5V AUX PG": {
+        "value": "0x00"
+      },
+      "SYS Usage": {
+        "unit": "percent",
+        "value": 3
+      },
+      "ROMB Battery": {
+        "value": "0x00"
+      },
+      "NonFatalPCIErBus": {
+        "value": "Not Readable"
+      },
+      "Redundancy": {
+        "value": "Not Readable"
+      },
+      "SBE Log Disabled": {
+        "value": "Not Readable"
+      },
+      "1.05V PG": {
+        "value": "0x00"
+      },
+      "Unknown": {
+        "value": "Not Readable"
+      },
+      "CPUMachineCheck": {
+        "value": "Not Readable"
+      },
+      "M23 VTT PG": {
+        "value": "0x00"
+      },
+      "Mem Fatal SB CRC": {
+        "value": "Not Readable"
+      },
+      "CPU Init Err": {
+        "value": "0xaf"
+      },
+      "Mem CRC Err": {
+        "value": "0x00"
+      },
+      "M01 VPP PG": {
+        "value": "0x00"
+      },
+      "Dedicated NIC": {
+        "value": "0x00"
+      },
+      "M01 VTT PG": {
+        "value": "0x00"
+      },
+      "FIVR PG": {
+        "value": "0x00"
+      },
+      "BP1 Cfg Err": {
+        "value": "0x00"
+      },
+      "Chassis Mismatch": {
+        "value": "Not Readable"
+      },
+      "Non Fatal PCI Er": {
+        "value": "0x00"
+      },
+      "Memory RAID": {
+        "value": "0x00"
+      },
+      "Mem Redun Gain": {
+        "value": "Not Readable"
+      },
+      "OS Watchdog Time": {
+        "value": "0x00"
+      },
+      "PG": {
+        "value": "0x00"
+      },
+      "PFault Fail Safe": {
+        "value": "Not Readable"
+      },
+      "QPIRC Warning": {
+        "value": "Not Readable"
+      },
+      "1.5V PG": {
+        "value": "0x00"
+      },
+      "OS Watchdog": {
+        "value": "0x00"
+      },
+      "CPU TDP": {
+        "value": "0x00"
+      },
+      "VFLASH SD": {
+        "value": "0x00"
+      },
+      "M23 VPP PG": {
+        "value": "0x00"
+      },
+      "CPU Protocol Err": {
+        "value": "Not Readable"
+      },
+      "PCI Parity Err": {
+        "value": "Not Readable"
+      },
+      "PCIE Fatal Err": {
+        "value": "Not Readable"
+      },
+      "Interconnect Err": {
+        "value": "Not Readable"
+      },
+      "MRC Warning": {
+        "value": "Not Readable"
+      },
+      "Link Warning": {
+        "value": "Not Readable"
+      },
+      "CPU Machine Chk": {
+        "value": "0xaa"
+      },
+      "MSR Info Log": {
+        "value": "0x00"
+      },
+      "Status": {
+        "value": "Not Readable"
+      },
+      "FatalPCIErrBus": {
+        "value": "Not Readable"
+      },
+      "Inlet Temp": {
+        "unit": "degrees C",
+        "value": 19
+      },
+      "Logging Disabled": {
+        "value": "Not Readable"
+      },
+      "Mem ECC Warning": {
+        "value": "0x00"
+      },
+      "1.5V AUX PG": {
+        "value": "0x00"
+      },
+      "DIMM PG": {
+        "value": "0x00"
+      },
+      "SEL": {
+        "value": "Not Readable"
+      },
+      "B": {
+        "value": "0x00"
+      },
+      "12V PG": {
+        "value": "0x00"
+      },
+      "Pwr Consumption": {
+        "unit": "Watts",
+        "value": 160
+      },
+      "CPU Bus PERR": {
+        "value": "Not Readable"
+      }
+    },
+    "network": {
+      "p2p1": {
+        "hw-tc-offload": "off",
+        "tx-checksumming/tx-checksum-fcoe-crc": "on [fixed]",
+        "tx-sctp-segmentation": "off [fixed]",
+        "large-receive-offload": "off",
+        "tcp-segmentation-offload/tx-tcp-ecn-segmentation": "off [fixed]",
+        "fcoe-mtu": "off [fixed]",
+        "firmware": "0x80000818",
+        "RX": "off",
+        "tx-udp_tnl-segmentation": "on",
+        "Autonegotiate": "on",
+        "tcp-segmentation-offload": "on",
+        "duplex": "full",
+        "tx-fcoe-segmentation": "on [fixed]",
+        "tx-checksumming/tx-checksum-ipv4": "off [fixed]",
+        "tx-gre-segmentation": "on",
+        "tx-checksumming/tx-checksum-ipv6": "off [fixed]",
+        "latency": 0,
+        "tx-gso-robust": "off [fixed]",
+        "autonegotiation": "on",
+        "highdma": "on [fixed]",
+        "rx-vlan-stag-filter": "off [fixed]",
+        "tx-vlan-stag-hw-insert": "off [fixed]",
+        "rx-vlan-offload": "on",
+        "vlan-challenged": "off [fixed]",
+        "tx-udp_tnl-csum-segmentation": "on",
+        "tcp-segmentation-offload/tx-tcp-mangleid-segmentation": "off",
+        "rx-udp_tunnel-port-offload": "on",
+        "netns-local": "off [fixed]",
+        "vendor": "Intel Corporation",
+        "serial": "e0:d8:48:19:22:c6",
+        "speed": "10Gbit/s",
+        "size": 1e+10,
+        "l2-fwd-offload": "off",
+        "rx-vlan-stag-hw-parse": "off [fixed]",
+        "businfo": "pci@0000:04:00.0",
+        "tx-vlan-offload": "on",
+        "product": "82599 10 Gigabit Dual Port Backplane Connection",
+        "tx-nocache-copy": "off",
+        "udp-fragmentation-offload": "off [fixed]",
+        "tx-checksumming/tx-checksum-sctp": "on",
+        "driver": "ixgbe",
+        "tx-sit-segmentation": "on",
+        "busy-poll": "off [fixed]",
+        "scatter-gather/tx-scatter-gather": "on",
+        "tx-checksumming/tx-checksum-ip-generic": "on",
+        "link": "yes",
+        "rx-all": "off",
+        "tx-ipip-segmentation": "on",
+        "tcp-segmentation-offload/tx-tcp6-segmentation": "on",
+        "rx-checksumming": "on",
+        "tcp-segmentation-offload/tx-tcp-segmentation": "on",
+        "TX": "off",
+        "generic-segmentation-offload": "on",
+        "loopback": "off [fixed]",
+        "tx-lockless": "off [fixed]",
+        "tx-checksumming": "on",
+        "ntuple-filters": "off",
+        "rx-vlan-filter": "on",
+        "tx-gre-csum-segmentation": "on",
+        "tx-gso-partial": "on",
+        "receive-hashing": "on",
+        "scatter-gather/tx-scatter-gather-fraglist": "off [fixed]",
+        "generic-receive-offload": "on",
+        "rx-fcs": "off [fixed]",
+        "scatter-gather": "on"
+      },
+      "p2p2": {
+        "hw-tc-offload": "off",
+        "tx-checksumming/tx-checksum-fcoe-crc": "on [fixed]",
+        "tx-sctp-segmentation": "off [fixed]",
+        "large-receive-offload": "off",
+        "tcp-segmentation-offload/tx-tcp-ecn-segmentation": "off [fixed]",
+        "fcoe-mtu": "off [fixed]",
+        "firmware": "0x80000818",
+        "RX": "off",
+        "tx-udp_tnl-segmentation": "on",
+        "Autonegotiate": "on",
+        "tcp-segmentation-offload": "on",
+        "duplex": "full",
+        "tx-fcoe-segmentation": "on [fixed]",
+        "tx-checksumming/tx-checksum-ipv4": "off [fixed]",
+        "tx-gre-segmentation": "on",
+        "tx-checksumming/tx-checksum-ipv6": "off [fixed]",
+        "latency": 0,
+        "tx-gso-robust": "off [fixed]",
+        "autonegotiation": "on",
+        "highdma": "on [fixed]",
+        "rx-vlan-stag-filter": "off [fixed]",
+        "tx-vlan-stag-hw-insert": "off [fixed]",
+        "rx-vlan-offload": "on",
+        "vlan-challenged": "off [fixed]",
+        "tx-udp_tnl-csum-segmentation": "on",
+        "tcp-segmentation-offload/tx-tcp-mangleid-segmentation": "off",
+        "rx-udp_tunnel-port-offload": "on",
+        "netns-local": "off [fixed]",
+        "vendor": "Intel Corporation",
+        "serial": "e0:d8:48:19:22:c8",
+        "speed": "10Gbit/s",
+        "size": 1e+10,
+        "l2-fwd-offload": "off",
+        "rx-vlan-stag-hw-parse": "off [fixed]",
+        "businfo": "pci@0000:04:00.1",
+        "tx-vlan-offload": "on",
+        "product": "82599 10 Gigabit Dual Port Backplane Connection",
+        "tx-nocache-copy": "off",
+        "udp-fragmentation-offload": "off [fixed]",
+        "tx-checksumming/tx-checksum-sctp": "on",
+        "driver": "ixgbe",
+        "tx-sit-segmentation": "on",
+        "busy-poll": "off [fixed]",
+        "scatter-gather/tx-scatter-gather": "on",
+        "tx-checksumming/tx-checksum-ip-generic": "on",
+        "link": "yes",
+        "rx-all": "off",
+        "tx-ipip-segmentation": "on",
+        "tcp-segmentation-offload/tx-tcp6-segmentation": "on",
+        "rx-checksumming": "on",
+        "tcp-segmentation-offload/tx-tcp-segmentation": "on",
+        "TX": "off",
+        "generic-segmentation-offload": "on",
+        "loopback": "off [fixed]",
+        "tx-lockless": "off [fixed]",
+        "tx-checksumming": "on",
+        "ntuple-filters": "off",
+        "rx-vlan-filter": "on",
+        "tx-gre-csum-segmentation": "on",
+        "tx-gso-partial": "on",
+        "receive-hashing": "on",
+        "scatter-gather/tx-scatter-gather-fraglist": "off [fixed]",
+        "generic-receive-offload": "on",
+        "rx-fcs": "off [fixed]",
+        "scatter-gather": "on"
+      },
+      "em2": {
+        "hw-tc-offload": "off",
+        "tx-checksumming/tx-checksum-fcoe-crc": "on [fixed]",
+        "tx-sctp-segmentation": "off [fixed]",
+        "large-receive-offload": "off",
+        "tcp-segmentation-offload/tx-tcp-ecn-segmentation": "off [fixed]",
+        "fcoe-mtu": "off [fixed]",
+        "firmware": "0x800008b3",
+        "RX": "off",
+        "tx-udp_tnl-segmentation": "on",
+        "Autonegotiate": "on",
+        "tcp-segmentation-offload": "on",
+        "duplex": "full",
+        "tx-fcoe-segmentation": "on [fixed]",
+        "tx-checksumming/tx-checksum-ipv4": "off [fixed]",
+        "tx-gre-segmentation": "on",
+        "tx-checksumming/tx-checksum-ipv6": "off [fixed]",
+        "latency": 0,
+        "tx-gso-robust": "off [fixed]",
+        "autonegotiation": "on",
+        "highdma": "on [fixed]",
+        "rx-vlan-stag-filter": "off [fixed]",
+        "tx-vlan-stag-hw-insert": "off [fixed]",
+        "rx-vlan-offload": "on",
+        "vlan-challenged": "off [fixed]",
+        "tx-udp_tnl-csum-segmentation": "on",
+        "tcp-segmentation-offload/tx-tcp-mangleid-segmentation": "off",
+        "rx-udp_tunnel-port-offload": "on",
+        "netns-local": "off [fixed]",
+        "vendor": "Intel Corporation",
+        "serial": "e0:d8:48:19:22:c4",
+        "speed": "10Gbit/s",
+        "size": 1e+10,
+        "l2-fwd-offload": "off",
+        "rx-vlan-stag-hw-parse": "off [fixed]",
+        "businfo": "pci@0000:01:00.1",
+        "tx-vlan-offload": "on",
+        "product": "82599 10 Gigabit Dual Port Backplane Connection",
+        "tx-nocache-copy": "off",
+        "udp-fragmentation-offload": "off [fixed]",
+        "tx-checksumming/tx-checksum-sctp": "on",
+        "driver": "ixgbe",
+        "tx-sit-segmentation": "on",
+        "busy-poll": "off [fixed]",
+        "scatter-gather/tx-scatter-gather": "on",
+        "tx-checksumming/tx-checksum-ip-generic": "on",
+        "link": "yes",
+        "rx-all": "off",
+        "tx-ipip-segmentation": "on",
+        "tcp-segmentation-offload/tx-tcp6-segmentation": "on",
+        "rx-checksumming": "on",
+        "tcp-segmentation-offload/tx-tcp-segmentation": "on",
+        "TX": "off",
+        "generic-segmentation-offload": "on",
+        "loopback": "off [fixed]",
+        "tx-lockless": "off [fixed]",
+        "tx-checksumming": "on",
+        "ntuple-filters": "off",
+        "rx-vlan-filter": "on",
+        "tx-gre-csum-segmentation": "on",
+        "tx-gso-partial": "on",
+        "receive-hashing": "on",
+        "scatter-gather/tx-scatter-gather-fraglist": "off [fixed]",
+        "generic-receive-offload": "on",
+        "rx-fcs": "off [fixed]",
+        "scatter-gather": "on"
+      },
+      "em1": {
+        "hw-tc-offload": "off",
+        "scatter-gather": "on",
+        "rx-fcs": "off [fixed]",
+        "link": "yes",
+        "scatter-gather/tx-scatter-gather-fraglist": "off [fixed]",
+        "tx-checksumming/tx-checksum-fcoe-crc": "on [fixed]",
+        "tx-sctp-segmentation": "off [fixed]",
+        "large-receive-offload": "off",
+        "tcp-segmentation-offload/tx-tcp-ecn-segmentation": "off [fixed]",
+        "fcoe-mtu": "off [fixed]",
+        "firmware": "0x800008b3",
+        "RX": "off",
+        "tx-udp_tnl-segmentation": "on",
+        "Autonegotiate": "on",
+        "tcp-segmentation-offload": "on",
+        "duplex": "full",
+        "ipv4-netmask": "255.255.255.0",
+        "TX": "off",
+        "tx-gre-segmentation": "on",
+        "tx-checksumming/tx-checksum-ipv6": "off [fixed]",
+        "latency": 0,
+        "tx-gso-robust": "off [fixed]",
+        "autonegotiation": "on",
+        "highdma": "on [fixed]",
+        "rx-vlan-stag-filter": "off [fixed]",
+        "ipv4-network": "10.20.10.0",
+        "rx-vlan-offload": "on",
+        "vlan-challenged": "off [fixed]",
+        "tx-udp_tnl-csum-segmentation": "on",
+        "tcp-segmentation-offload/tx-tcp-mangleid-segmentation": "off",
+        "rx-udp_tunnel-port-offload": "on",
+        "netns-local": "off [fixed]",
+        "vendor": "Intel Corporation",
+        "serial": "e0:d8:48:19:22:c2",
+        "speed": "10Gbit/s",
+        "size": 1e+10,
+        "l2-fwd-offload": "off",
+        "ipv4": "10.20.10.112",
+        "tx-gso-partial": "on",
+        "ipv4-cidr": 24,
+        "rx-vlan-stag-hw-parse": "off [fixed]",
+        "tx-vlan-offload": "on",
+        "product": "82599 10 Gigabit Dual Port Backplane Connection",
+        "tx-nocache-copy": "off",
+        "udp-fragmentation-offload": "off [fixed]",
+        "tx-checksumming/tx-checksum-sctp": "on",
+        "driver": "ixgbe",
+        "tx-sit-segmentation": "on",
+        "busy-poll": "off [fixed]",
+        "scatter-gather/tx-scatter-gather": "on",
+        "tx-checksumming/tx-checksum-ip-generic": "on",
+        "tx-vlan-stag-hw-insert": "off [fixed]",
+        "loopback": "off [fixed]",
+        "rx-all": "off",
+        "tx-ipip-segmentation": "on",
+        "tcp-segmentation-offload/tx-tcp6-segmentation": "on",
+        "rx-checksumming": "on",
+        "tcp-segmentation-offload/tx-tcp-segmentation": "on",
+        "generic-receive-offload": "on",
+        "tx-checksumming/tx-checksum-ipv4": "off [fixed]",
+        "generic-segmentation-offload": "on",
+        "tx-fcoe-segmentation": "on [fixed]",
+        "tx-lockless": "off [fixed]",
+        "tx-checksumming": "on",
+        "ntuple-filters": "off",
+        "rx-vlan-filter": "on",
+        "tx-gre-csum-segmentation": "on",
+        "businfo": "pci@0000:01:00.0",
+        "receive-hashing": "on"
+      }
+    }
+  },
+  "all_interfaces": {
+    "em2": {
+      "pxe": false,
+      "client_id": null,
+      "lldp_processed": {
+        "switch_chassis_id": "14:18:77:fb:69:ad",
+        "switch_port_id": "TenGigabitEthernet 0/6"
+      },
+      "mac": "e0:d8:48:19:22:c4",
+      "ip": null
+    },
+    "em1": {
+      "pxe": true,
+      "client_id": null,
+      "lldp_processed": {
+        "switch_chassis_id": "14:18:77:f8:88:cf",
+        "switch_port_id": "TenGigabitEthernet 0/6"
+      },
+      "mac": "e0:d8:48:19:22:c2",
+      "ip": "10.20.10.112"
+    },
+    "p2p1": {
+      "pxe": false,
+      "client_id": null,
+      "lldp_processed": {
+        "switch_chassis_id": "14:18:77:fb:68:79",
+        "switch_port_id": "TenGigabitEthernet 0/6"
+      },
+      "mac": "e0:d8:48:19:22:c6",
+      "ip": null
+    },
+    "p2p2": {
+      "pxe": false,
+      "client_id": null,
+      "lldp_processed": {
+        "switch_chassis_id": "14:18:77:f8:87:47",
+        "switch_port_id": "TenGigabitEthernet 0/6"
+      },
+      "mac": "e0:d8:48:19:22:c8",
+      "ip": null
+    }
+  },
+  "cpus": 48,
+  "boot_interface": "e0:d8:48:19:22:c2",
+  "memory_mb": 262144
+}

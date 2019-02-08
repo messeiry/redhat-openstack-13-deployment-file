@@ -1,0 +1,115 @@
+
+{
+"nodes":[
+
+	{
+	"mac":[
+	"E0:D8:48:19:22:8E"
+	],
+	"name": "control_1",
+	"pm_type":"pxe_drac",
+	"pm_user":"root",
+	"pm_password":"calvin",
+	"capabilities":"profile:control,boot_option:local",
+	"pm_addr":"172.17.72.4"
+	},
+
+	{
+	"mac":[
+	"E0:D8:48:19:22:9B"
+	],
+	"name": "control_2",
+	"pm_type":"pxe_drac",
+	"pm_user":"root",
+	"pm_password":"calvin",
+	"capabilities":"profile:control,boot_option:local",
+	"pm_addr":"172.17.72.5"
+	},
+
+	{
+	"mac":[
+	"E0:D8:48:19:22:A8"
+	],
+	"name": "control_3",
+	"pm_type":"pxe_drac",
+	"pm_user":"root",
+	"pm_password":"calvin",
+	"capabilities":"profile:control,boot_option:local",
+	"pm_addr":"172.17.72.6"
+	},
+
+	{
+	"mac":[
+	"E0:D8:48:19:22:B5"
+	],
+	"name": "compute_1",
+	"pm_type":"pxe_drac",
+	"pm_user":"root",
+	"pm_password":"calvin",
+	"capabilities":"profile:compute,boot_option:local",
+	"pm_addr":"172.17.72.7"
+	},
+
+	{
+	"mac":[
+	"E0:D8:48:19:22:C2"
+	],
+	"name": "compute_2",
+	"pm_type":"pxe_drac",
+	"pm_user":"root",
+	"pm_password":"calvin",
+	"capabilities":"profile:compute,boot_option:local",
+	"pm_addr":"172.17.72.8"
+	},
+
+	{
+	"mac":[
+	"E0:D8:48:19:22:CF"
+	],
+	"name": "compute_3",
+	"pm_type":"pxe_drac",
+	"pm_user":"root",
+	"pm_password":"calvin",
+	"capabilities":"profile:compute,boot_option:local",
+	"pm_addr":"172.17.72.9"
+	},
+
+	{
+	"mac":[
+	"E0:D8:48:19:22:DC"
+	],
+	"name": "ceph_1",
+	"pm_type":"pxe_drac",
+	"pm_user":"root",
+	"pm_password":"calvin",
+	"capabilities":"profile:ceph-storage,boot_option:local",
+	"pm_addr":"172.17.72.10"
+	},
+
+	{
+	"mac":[
+	"E0:D8:48:19:22:E9"
+	],
+	"name": "ceph_2",
+	"pm_type":"pxe_drac",
+	"pm_user":"root",
+	"pm_password":"calvin",
+	"capabilities":"profile:ceph-storage,boot_option:local",
+	"pm_addr":"172.17.72.11"
+	},
+
+	{
+	"mac":[
+	"E0:D8:48:19:22:F6"
+	],
+	"name": "ceph_3",
+	"pm_type":"pxe_drac",
+	"pm_user":"root",
+	"pm_password":"calvin",
+	"capabilities":"profile:ceph-storage,boot_option:local",
+	"pm_addr":"172.17.72.12"
+	}	
+
+]
+}
+

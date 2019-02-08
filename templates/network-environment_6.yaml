@@ -1,0 +1,43 @@
+resource_registry:
+  #OS::TripleO::Compute::Net::SoftwareConfig: nic-configs/compute.yaml
+  OS::TripleO::Controller::Net::SoftwareConfig: nic-configs/controller.yaml
+  #OS::TripleO::CephStorage::Net::SoftwareConfig: nic-configs/ceph-storage.yaml
+
+parameter_defaults:
+  ControlPlaneSubnetCidr: '24'
+  ControlPlaneDefaultRoute: 10.20.10.1
+  EC2MetadataIp: 10.20.10.1
+
+  ExternalNetCidr: 172.17.69.0/24
+  ExternalAllocationPools: [{'start': '172.17.69.12', 'end': '172.17.69.150'}]
+  ExternalInterfaceDefaultRoute: 172.17.69.1
+  NeutronExternalNetworkBridge: "''"
+  
+  ExternalNetworkVlanID: 72
+  InternalApiNetworkVlanID: 10
+  StorageNetworkVlanID: 20
+  StorageMgmtNetworkVlanID: 30
+  TenantNetworkVlanID: 40
+  
+
+
+  InternalApiNetCidr: 10.99.10.0/24
+  InternalApiAllocationPools: [{'start': '10.99.10.11', 'end': '10.99.10.200'}]
+  
+  StorageNetCidr: 10.99.20.0/24
+  StorageAllocationPools: [{'start': '10.99.20.11', 'end': '10.99.20.200'}]
+  
+  StorageMgmtNetCidr: 10.99.30.0/24
+  StorageMgmtAllocationPools: [{'start': '10.99.30.11', 'end': '10.99.30.200'}]
+  
+  TenantNetCidr: 10.99.40.0/24
+  TenantAllocationPools: [{'start': '10.99.40.11', 'end': '10.99.40.200'}]
+  
+  DnsServers: ["8.8.8.8", "8.8.4.4"]
+
+  NeutronTunnelTypes: 'vxlan'
+  BondInterfaceOvsOptions: "bond_mode=active-backup"
+  
+  PublicVirtualFixedIPs: [{'ip_address':'172.17.69.11'}]
+  StorageVirtualFixedIPs: [{'ip_address':'10.99.20.10'}]
+  StorageMgmtVirtualFixedIPs: [{'ip_address':'10.99.30.10'}]
